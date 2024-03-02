@@ -4,7 +4,7 @@ export default function Header() {
   <>
 <div >
   <nav className=" navbar navbar-expand navbar-white navbar-light d-flex justify-content-between">
-     <Link class="navbar-brand" to="/">
+     <Link className="navbar-brand" to="/">
       <img src="../CRUD.png" alt="" width="40" height="35" style={{borderRadius:"5px"}}/>
      </Link>
     

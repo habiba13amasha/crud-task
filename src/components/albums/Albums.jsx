@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState ,useNavigate  } from "react";
+import { useEffect, useState   } from "react";
 import swal from "sweetalert2";
 import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 export default function Albums() {
   const [albums,setalbums]=useState([]);
   const navigate=useNavigate();
@@ -11,27 +13,28 @@ export default function Albums() {
   },[]);
   const getAllAlbums=()=>{
       fetch("https://jsonplaceholder.typicode.com/albums")
-          .then((response)=>{response.json()})
-          .then((data)=>{setalbums(data)})
-  }
+          .then((response)=>response.json())
+          .then((data)=>setalbums(data));
+  };
 
   const deleteAlbum=(id)=>{
     swal.fire({
         title:`Are you sure you want to delete this album ?`,
-        showCancelButton:true
-    }).then((data)=>{
+        showCancelButton:true,
+    })
+     .then((data)=>{
         if(data.isConfirmed){
-            fetch(`https://jsonplaceholder.typicode.com/albums${id}`,{
-                method:"DELETE"
+            fetch(`https://jsonplaceholder.typicode.com/albums/${id}`,{
+                method:"DELETE",
               })
-                .then((response)=>(response.json()))
-                .then((data)=>{getAllAlbums()})
-        }})
+                .then((response)=>response.json())
+                .then((data)=>{getAllAlbums();})
+        }});};
 const editAlbum=(id)=>{
-  navigate("/album/edit")
+  navigate(`/album/edit/${id}`)
 }
 const albumPhotos=(id)=>{
-  navigate("/album/photo")
+  navigate(`/album/photo/${id}`)
 }
   return (
     <>
@@ -48,30 +51,29 @@ const albumPhotos=(id)=>{
           </tr>
         </thead>
         <tbody>
-        {albums.map((album)=>{
-          return(
+        {albums.map((album)=>(
+          
              <tr key={album.id}>
                 <td>{album.id}</td>
-                <td>{album.titel}</td>
+                <td>{album.title}</td>
                 <td>
-                  <button className="btn btn-primary btn-sm" onClick={()=>editAlbum(id)}>Edit</button>
-                  <button className="btn btn-danger btn-sm" onClick={()=>deleteAlbum(id)}>Delete</button>
-                  <button  className="btn btn-success btn-sm" onClick={()=>albumPhotos(id)}>Photos</button>
-                  <Link to="/album/photo/add" className="btn btn-success mt-3 ">Add Photo</Link> 
+                  <button className="btn btn-primary btn-sm" onClick={()=>editAlbum(album.id)}>Edit</button>
+                  <button className="btn btn-danger btn-sm" onClick={()=>deleteAlbum(album.id)}>Delete</button>
+                  <button  className="btn btn-success btn-sm" onClick={()=>albumPhotos(album.id)}>Photos</button>
                 </td>
              </tr>
              
-          )})}
+          ))}
           </tbody>
       </table>
     </div>
     <div>
      <Link to="/album/add" className="btn btn-success mt-3 float-right">Add Album</Link>
+     <Link to="/album/photo/add" className="btn btn-success mt-3 ">Add Photo</Link> 
+
     </div>
   </div>
 </div>
     </>
-
-
-  )
-}}
+);
+}

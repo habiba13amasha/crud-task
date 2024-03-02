@@ -1,31 +1,31 @@
-import { useEffect, useState,useNavigate  } from "react";
-import{useParams} from "react-router-dom";
-import {Link} from "react-router-dom";
+import { useEffect, useState  } from "react";
+import{useParams,Link} from "react-router-dom";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-function Editpost(){
+function Editalbum(){
   const[newId,setnewId]=useState("");
     const[newName,setnewName]=useState("");
     let {albumid}=useParams();
     const navigate=useNavigate();
-    // eslint-disable-next-line no-unused-vars
-    const [post,setpost]=useState();
+    
     useEffect(()=>{
-        fetch(`https://jsonplaceholder.typicode.com/albums${albumid}`)
-            .then((response)=>{response.json()})
-            .then((post)=>{setpost(post); })
+        fetch(`https://jsonplaceholder.typicode.com/albums/${albumid}`)
+            .then((response)=>response.json())
+            .then((album)=>{setnewId(album.id);setnewName(album.title); })
     },[albumid]);
     const handelSubmit=(e)=>{
       e.preventDefault(); 
-      axios.put("https://jsonplaceholder.typicode.com/posts",{
-          newId,newName})
-       .then((res)=>{alert("Edit Done!");navigate("/post")});
-  }
+      axios.put(`https://jsonplaceholder.typicode.com/albums/${albumid}`,{
+        id: newId,
+        title: newName,})
+       .then((res)=>{alert("Edit Done!");navigate("/album")});
+  };
    return (
     <>
       <div className="row">
      <div className="offest-lg-3 col-lg-6">
-        <form className="container" onSubmit={handelSubmit()}>
+        <form className="container" onSubmit={handelSubmit}>
           <div className="card" >
            <div className="card-titel">
             <h3>Edit Album</h3>
@@ -34,13 +34,13 @@ function Editpost(){
             <div className="row">
                 <div className="col-lg-12">
                     <div className="form-group">
-                     <lable>ID</lable>
+                     <label>ID</label>
                      <input value={newId} onChange={(e)=>setnewId(e.target.value)} className="form-control"></input>
                     </div>
                 </div>
                 <div className="col-lg-12">
                     <div className="form-group">
-                     <lable>Name</lable>
+                     <label>Name</label>
                      <input value={newName} required onChange={(e)=>setnewName(e.target.value)} className="form-control"></input>
                     </div>
                 </div>  
@@ -56,6 +56,6 @@ function Editpost(){
     </div>
     
     </>
-   )
+   );
 }
-export default Editpost;
+export default Editalbum;

@@ -1,6 +1,7 @@
-import { useState ,useNavigate } from "react";
+import { useState } from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export default function Addalbum() {
     const[newId,setnewId]=useState("");
@@ -15,7 +16,7 @@ export default function Addalbum() {
   return (
     <div className="row">
      <div className="offest-lg-3 col-lg-6">
-        <form className="container" onSubmit={handelSubmit()}>
+        <form className="container" onSubmit={handelSubmit}>
           <div className="card" >
            <div className="card-titel">
             <h3>Add New Album</h3>
@@ -24,13 +25,13 @@ export default function Addalbum() {
             <div className="row">
                 <div className="col-lg-12">
                     <div className="form-group">
-                     <lable>ID</lable>
+                     <label>ID</label>
                      <input value={newId} required onChange={(e)=>setnewId(e.target.value)} className="form-control"></input>
                     </div>
                 </div>
                 <div className="col-lg-12">
                     <div className="form-group">
-                     <lable>Name</lable>
+                     <label>Name</label>
                      <input value={newName} required onChange={(e)=>setnewName(e.target.value)} className="form-control"></input>
                     </div>
                 </div>   

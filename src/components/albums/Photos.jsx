@@ -14,7 +14,7 @@ export default function Photos() {
         getAllPhotos();
     },[albumid]);
     const getAllPhotos=()=>{
-        fetch(`https://jsonplaceholder.typicode.com/photos${albumid}`)
+        fetch(`https://jsonplaceholder.typicode.com/photos/${albumid}`)
             .then((response)=>{response.json()})
             .then((data)=>{setphotos(data)})
     }
