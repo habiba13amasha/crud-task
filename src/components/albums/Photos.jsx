@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import{useParams,Link} from "react-router-dom";
+import{Link} from "react-router-dom";
 import { useState ,useEffect } from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import useParams from "react"
 
 export default function Photos() {
     const [photos,setphotos]=useState([]);

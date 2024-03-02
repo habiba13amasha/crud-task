@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import{useParams,Link} from "react-router-dom";
+import{Link} from "react-router-dom";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import useParams from "react"
+
 function Editpost(){
   const[newId,setnewId]=useState("");
     const[newName,setnewName]=useState("");
     const[newDescription,setnewDescription]=useState("");
     let {postid}=useParams();
     const navigate=useNavigate();
-    // eslint-disable-next-line no-unused-vars
-    const [post,setpost]=useState(null);
+    const [post,setpost]=useState([]);
+
     useEffect(()=>{
         fetch(`https://jsonplaceholder.typicode.com/posts/${postid}`)
             .then((response)=>response.json())

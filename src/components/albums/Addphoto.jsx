@@ -1,8 +1,8 @@
 import { useState  } from "react";
-import {Link,useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-
+import useParams from "react"
 export default function Addphoto() {
     const[newId,setnewId]=useState("");
     const[newTitel,setnewTitel]=useState("");
