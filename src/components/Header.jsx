@@ -1,13 +1,11 @@
+import React from 'react';
 import { Link } from "react-router-dom"
+
 export default function Header() {
   return (
   <>
 <div >
-  <nav className=" navbar navbar-expand navbar-white navbar-light d-flex justify-content-between">
-     <Link className="navbar-brand" to="/">
-      <img src="../CRUD.png" alt=""  style={{borderRadius:"5px", width:"40px" ,height:"35px"}}/>
-     </Link>
-    
+  <nav className=" navbar navbar-expand navbar-white navbar-light d-flex justify-content-between float-right">
     <ul className="navbar-nav">
       <li className="nav-item d-none d-sm-inline-block">
         <Link to="/" className="nav-link">Home</Link>

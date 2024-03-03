@@ -3,6 +3,7 @@ import { useEffect, useState   } from "react";
 import swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import React from 'react';
 
 export default function Albums() {
   const [albums,setalbums]=useState([]);
@@ -38,11 +39,11 @@ const albumPhotos=(id)=>{
 }
   return (
     <>
-<div className="container my-5">Albums Page</div>
+<div className="container my-5"><strong>Albums Page</strong></div>
  <div className="container">
   <div className="card-body p-0">
     <div className="table-responsive">
-      <table className="table m-0">
+      <table className="table my-3">
         <thead>
           <tr>
             <th>ID</th>
@@ -56,10 +57,10 @@ const albumPhotos=(id)=>{
              <tr key={album.id}>
                 <td>{album.id}</td>
                 <td>{album.title}</td>
-                <td>
-                  <button className="btn btn-primary btn-sm" onClick={()=>editAlbum(album.id)}>Edit</button>
-                  <button className="btn btn-danger btn-sm" onClick={()=>deleteAlbum(album.id)}>Delete</button>
-                  <button  className="btn btn-success btn-sm" onClick={()=>albumPhotos(album.id)}>Photos</button>
+                <td className="m-2 ">
+                  <button className="btn btn-primary btn-sm m-2" onClick={()=>editAlbum(album.id)}>Edit</button>
+                  <button className="btn btn-danger btn-sm m-2" onClick={()=>deleteAlbum(album.id)}>Delete</button>
+                  <button  className="btn btn-success btn-sm m-1" onClick={()=>albumPhotos(album.id)}>Photos</button>
                 </td>
              </tr>
              

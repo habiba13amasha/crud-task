@@ -3,6 +3,7 @@ import { useEffect, useState   } from "react";
 import swal from "sweetalert2";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import React from 'react';
 
 export default function Posts() {
     const [posts,setposts]=useState([]);
@@ -35,11 +36,11 @@ export default function Posts() {
 
   return (
     <>
-<div className="container my-5">Posts Page</div>
+<div className="container my-5"><strong>Posts Page</strong></div>
  <div className="container">
   <div className="card-body p-0">
     <div className="table-responsive">
-      <table className="table m-0">
+      <table className="table my-3">
         <thead>
           <tr>
             <th>ID</th>
@@ -54,9 +55,9 @@ export default function Posts() {
                 <td>{post.id}</td>
                 <td>{post.title}</td>
                 <td>{post.body}</td>
-                <td>
-                  <button className="btn btn-primary btn-sm" onClick={()=>editPost(post.id)}>Edit</button>
-                  <button className="btn btn-danger btn-sm" onClick={()=>deletePost(post.id)}>Delete</button>
+                <td className=" d-flex ">
+                  <button className="btn btn-primary btn-sm m-2" onClick={()=>editPost(post.id)}>Edit</button>
+                  <button className="btn btn-danger btn-sm m-2" onClick={()=>deletePost(post.id)}>Delete</button>
                 </td>
              </tr>
           ))}

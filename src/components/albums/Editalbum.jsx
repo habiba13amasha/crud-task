@@ -1,20 +1,22 @@
-import { useEffect, useState  } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState   } from "react";
 import{Link} from "react-router-dom";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import useParams from "react"
+import React from 'react';
+import { useParams } from "react-router-dom";
 
 function Editalbum(){
   const[newId,setnewId]=useState("");
     const[newName,setnewName]=useState("");
-    let {albumid}=useParams();
+    const {albumid}=useParams();
     const navigate=useNavigate();
     
     useEffect(()=>{
         fetch(`https://jsonplaceholder.typicode.com/albums/${albumid}`)
             .then((response)=>response.json())
             .then((album)=>{setnewId(album.id);setnewName(album.title); })
-    },[albumid]);
+    },[]);
     const handelSubmit=(e)=>{
       e.preventDefault(); 
       axios.put(`https://jsonplaceholder.typicode.com/albums/${albumid}`,{
@@ -24,11 +26,11 @@ function Editalbum(){
   };
    return (
     <>
-      <div className="row">
-     <div className="offest-lg-3 col-lg-6">
+      
+       <div className=" col-lg-6  container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
         <form className="container" onSubmit={handelSubmit}>
-          <div className="card" >
-           <div className="card-titel">
+          <div className="card align-content-center " >
+           <div className="card-titel m-3 p-2">
             <h3>Edit Album</h3>
            </div>
            <div className="card-body">
@@ -45,16 +47,20 @@ function Editalbum(){
                      <input value={newName} required onChange={(e)=>setnewName(e.target.value)} className="form-control"></input>
                     </div>
                 </div>  
-                <div className="form-group">
-                    <button type="submit" className="btn btn-success btn-sm">Save Changes</button>
-                    <Link to="/album" className="btn btn-success mt-3 ">Back</Link>
+                <div className="form-group d-flex  justify-content-between p-2">
+                    <button type="submit" className="btn btn-success btn-sm ">
+                      Save Changes
+                    </button>
+                    <Link to="/album" className="btn btn-success ml-5">
+                        Cancel
+                    </Link>
                 </div>
             </div>
            </div>
           </div>
         </form>
      </div>
-    </div>
+    
     
     </>
    );

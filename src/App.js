@@ -2,13 +2,15 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Albums from "./components/albums/Albums";
 import Posts from "./components/posts/Posts";
-import { BrowserRouter , Route,Routes} from 'react-router-dom';
 import Addpost from "./components/posts/Addpost";
 import Editpost from "./components/posts/Editpost";
 import Addalbum from "./components/albums/Addalbum";
 import Editalbum from "./components/albums/Editalbum";
 import Photos from "./components/albums/Photos";
 import Addphoto from "./components/albums/Addphoto";
+import { BrowserRouter , Route,Routes} from 'react-router-dom';
+import React from 'react';
+
 function App() {
   return (
     <div  className="wrapper">

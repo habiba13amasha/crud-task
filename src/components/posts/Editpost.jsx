@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import{Link} from "react-router-dom";
+import{Link,useParams} from "react-router-dom";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import useParams from "react"
+import React from 'react';
 
 function Editpost(){
   const[newId,setnewId]=useState("");
@@ -16,7 +18,7 @@ function Editpost(){
         fetch(`https://jsonplaceholder.typicode.com/posts/${postid}`)
             .then((response)=>response.json())
             .then((data)=>setpost(data));
-    },[postid]);
+    },[]);
     const handelSubmit=(e)=>{
       e.preventDefault(); 
       axios.put(`https://jsonplaceholder.typicode.com/posts/${postid}`,{
@@ -27,11 +29,11 @@ function Editpost(){
   };
    return (
     <>
-      <div className="row">
-     <div className="offest-lg-3 col-lg-6">
+      
+     <div className="col-lg-6  container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
         <form className="container" onSubmit={handelSubmit}>
           <div className="card" >
-           <div className="card-titel">
+           <div className="card-titel m-3 p-2">
             <h3>Edit Post</h3>
            </div>
            <div className="card-body">
@@ -55,8 +57,8 @@ function Editpost(){
                     </div>
                 </div> 
                 <div className="form-group">
-                    <button type="submit" className="btn btn-success btn-sm">Save Changes</button>
-                    <Link to="/post" className="btn btn-success mt-3 "  >Back</Link>
+                    <button type="submit" className="btn btn-success mr-5">Save Changes</button>
+                    <Link to="/post" className="btn btn-success ml-3 "  >Back</Link>
 
                 </div>
             </div>
@@ -64,7 +66,7 @@ function Editpost(){
           </div>
         </form>
      </div>
-    </div>
+   
     
     </>
    )

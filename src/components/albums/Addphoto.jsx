@@ -1,8 +1,8 @@
+import React from 'react';
 import { useState  } from "react";
-import {Link} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import useParams from "react"
 export default function Addphoto() {
     const[newId,setnewId]=useState("");
     const[newTitel,setnewTitel]=useState("");
@@ -20,11 +20,11 @@ export default function Addphoto() {
     }
   return (
     <>
-     <div className="row">
-     <div className="offest-lg-3 col-lg-6">
+    
+     <div className="col-lg-6  container d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
         <form className="container" onSubmit={handelSubmit}>
           <div className="card" >
-           <div className="card-titel">
+           <div className="card-titel m-3 p-2">
             <h3>Add New Photo</h3>
            </div>
            <div className="card-body">
@@ -46,14 +46,18 @@ export default function Addphoto() {
                      <label>Photo URL</label>
                      <input value={newPhotoURL} required onChange={(e)=>setnewPhotoURL(e.target.value)} className="form-control"></input>
                     </div>
+                   < div className='d-flex justify-content-between'>
+                     <Link to="/album/photo" className="btn btn-success mt-3 ">Save</Link>
+                     <Link to="/album" className="btn btn-success mt-3 ">Cancel</Link>
+                   </ div >
                 </div>
             </div>
            </div>
           </div>
         </form>
       </div>
-     </div>
-     <Link to="/album/photo" className="btn btn-success mt-3 ">Back</Link>
+    
+    
 
     </>
   )
