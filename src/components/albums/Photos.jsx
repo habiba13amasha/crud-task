@@ -1,49 +1,45 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import{Link,useParams} from "react-router-dom";
 import { useState ,useEffect } from "react";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 import React from 'react';
 
 export default function Photos() {
     const [photos,setphotos]=useState([]);
-    const {albumid}=useParams();
+    const {albumId}=useParams();
     useEffect(()=>{
         getAllPhotos();
-    },[albumid]);
-    const getAllPhotos=()=>{
-        fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumid}`)
-            .then((response)=>response.json())
-            .then((data)=>setphotos(data))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
+    const getAllPhotos = () => {
+      fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
+          .then((response) => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then((data) => {
+              setphotos(data);
+          })
     }
   return (
     <>
-     <h2>Photos</h2>
+     <h2 className="m-3 text-center">Photos</h2>
      <div className="row">
       {photos.map((photo)=>(
-       <Card sx={{ maxWidth:300 }} key={photo.id}>
-             <CardActionArea >
-              <CardMedia
-                component="img"
-                height="140"
-                image={photo.thumbnailUrl}
-                alt={photo.title}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                 {photo.title}
-                </Typography>
-              </CardContent>
-             </CardActionArea>
-      </Card>
+       <div className="card " style={{ width: "18rem" }} key={photo.id} >
+        <img src={photo.thumbnailUrl} className="card-img-top " alt=""/>
+        <div className="card-body">
+         <p className="card-text">{photo.title}</p>
+        </div>
+     </div>
      ))}
       
     </div>
-    <Link to="/album/photo/add" className="btn btn-success mt-3 ">Add Photo</Link>
-    <Link to="/album" className="btn btn-success mt-3 ">Back</Link>
+    <div className="d-flex justify-content-between">
+      <Link to="/album/photo/add" className="btn btn-success m-5 ">Add Photo</Link>
+      <Link to="/album" className="btn btn-success m-5 ">Back</Link>
+    </div>
     </>
   )
 }

@@ -35,7 +35,7 @@ const editAlbum=(id)=>{
   navigate(`/album/edit/${id}`)
 }
 const albumPhotos=(id)=>{
-  navigate(`/album/photo/${id}`)
+  navigate(`/album/photo?albumId=${id}`)
 }
   return (
     <>
@@ -58,7 +58,7 @@ const albumPhotos=(id)=>{
                 <td>{album.id}</td>
                 <td>{album.title}</td>
                 <td className="m-2 ">
-                  <button className="btn btn-primary btn-sm m-2" onClick={()=>editAlbum(album.id)}>Edit</button>
+                  <button className="btn btn-primary btn-sm m-2 " onClick={()=>editAlbum(album.id)}>Edit</button>
                   <button className="btn btn-danger btn-sm m-2" onClick={()=>deleteAlbum(album.id)}>Delete</button>
                   <button  className="btn btn-success btn-sm m-1" onClick={()=>albumPhotos(album.id)}>Photos</button>
                 </td>
@@ -69,8 +69,8 @@ const albumPhotos=(id)=>{
       </table>
     </div>
     <div>
-     <Link to="/album/add" className="btn btn-success mt-3 float-right">Add Album</Link>
-     <Link to="/album/photo/add" className="btn btn-success mt-3 ">Add Photo</Link> 
+     <Link to="/album/add" className="btn btn-success m-5 float-right">Add Album</Link>
+     <Link to="/album/photo/add" className="btn btn-success m-5 ">Add Photo</Link> 
 
     </div>
   </div>

@@ -12,10 +12,10 @@ export default function Addphoto() {
     
     const handelSubmit=(e)=>{
         e.preventDefault(); 
-        axios.post(`https://jsonplaceholder.typicode.com/photos/${albumid}`,{
-          id: newId,
-          title: newTitel,
-          url: newPhotoURL})
+        axios.post(`https://jsonplaceholder.typicode.com/photos?albumId=${albumid}`,{
+           id: newId,
+            title: newTitel,
+            thumbnailUrl: newPhotoURL})
          .then((res)=>{alert("Saved Done!");navigate("/album/photo")});
     }
   return (
@@ -37,7 +37,7 @@ export default function Addphoto() {
                 </div>
                 <div className="col-lg-12">
                     <div className="form-group">
-                     <label>Name</label>
+                     <label>Title</label>
                      <input value={newTitel} required onChange={(e)=>setnewTitel(e.target.value)} className="form-control"></input>
                     </div>
                 </div>   
@@ -46,8 +46,8 @@ export default function Addphoto() {
                      <label>Photo URL</label>
                      <input value={newPhotoURL} required onChange={(e)=>setnewPhotoURL(e.target.value)} className="form-control"></input>
                     </div>
-                   < div className='d-flex justify-content-between'>
-                     <Link to="/album/photo" className="btn btn-success mt-3 ">Save</Link>
+                   < div className='d-flex  justify-content-between'>
+                     <button type="submit" className="btn btn-success mt-3">Save</button>
                      <Link to="/album" className="btn btn-success mt-3 ">Cancel</Link>
                    </ div >
                 </div>
